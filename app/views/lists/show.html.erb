@@ -12,7 +12,7 @@
       <% @list.bookmarks.each do |bookmark| %>
         <% if movie.id == bookmark.movie_id %>
           <%= bookmark.comment %>
-          <%= link_to "Delete Bookmark", bookmark_path(bookmark), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to "Delete Bookmark", root_path(bookmark), method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>
       <% end %>
     </div>
