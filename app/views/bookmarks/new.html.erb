@@ -1,7 +1,10 @@
-<%= simple_form_for [@list, @bookmark] do |f| %>
-  <%= f.association :movie %>
-  <div class="form-inputs">
-    <%= f.input :comment %>
-  </div>
-  <%= f.submit %>
-<% end %>
+<div class="container mt-3">
+  <h1>New Bookmark</h1>
+  <%= simple_form_for [@list, @bookmark] do |f| %>
+    <%= f.association :movie %>
+    <div class="form-inputs">
+      <%= f.input :comment %>
+    </div>
+    <%= f.submit %>
+  <% end %>
+</div>

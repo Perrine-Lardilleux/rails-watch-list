@@ -1,22 +1,33 @@
-<h1><%= @list.name %></h1>
-
-<br><br><%= link_to "Add a new bookmark", new_list_bookmark_path(@list), class: "btn btn-primary" %>
-
-<br><br><strong>Movies:</strong>
-<% @list.movies.each do |movie| %>
-  <div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title"><%= movie.title %></h5>
-      <p class="card-text"><%= movie.overview %></p>
-      <% @list.bookmarks.each do |bookmark| %>
-        <% if movie.id == bookmark.movie_id %>
-          <%= bookmark.comment %>
-          <%= link_to "Delete Bookmark", root_path(bookmark), method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% end %>
-      <% end %>
-    </div>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @list.photo.key, height: 300, crop: :fill %>')">
+  <div class="container d-flex justify-content-center">
+    <h1>Save any kind of movies</h1>
   </div>
-<% end %>
+</div>
 
+<div class="container d-flex justify-content-between mt-5 mb-5">
+  <h1><%= @list.name %></h1>
+  <%= link_to "Add a new bookmark", new_list_bookmark_path(@list), class: "btn btn-info" %>
+</div>
+
+<div class="container mb-5">
+  <br><br><strong>Movies:</strong>
+  <div class="row d-flex mx-3">
+    <% @list.movies.each do |movie| %>
+      <div class="col-5 card mt-5 mx-3" style="width: 18rem;">
+        <div class="card-body w-100">
+          <h5 class="card-title"><%= movie.title %></h5>
+          <p class="card-text"><%= movie.overview %></p>
+          <% @list.bookmarks.each do |bookmark| %>
+            <% if movie.id == bookmark.movie_id %>
+              <%= bookmark.comment %>
+              <%= link_to "Delete Bookmark", root_path(bookmark), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <br><br><%= link_to "Back to home", root_path, class: "btn btn-primary" %>
+</div>
 
